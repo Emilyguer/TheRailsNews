@@ -13,4 +13,7 @@ class User < ApplicationRecord
     admin: 'administrador'
   }, _default: 'normal'
 
+#Relaciones 
+has_many :comments
+
 end
