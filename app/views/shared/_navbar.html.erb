@@ -1,8 +1,48 @@
-<nav>
-  <ul>
-    <li><%= link_to 'Inicio', home_path %></li>
-    <li><%= link_to 'Términos', term_path %></li>
-    <li><%= link_to 'Política de privacidad', privacy_path %></li>
-    <li><%= link_to 'Derechos de autor', copyright_path %></li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Offcanvas dark navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'Inicio', home_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Términos', term_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Política de privacidad', privacy_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Derechos de autor', copyright_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <% if user_signed_in? %>
+                Hola <%= current_user.email %>
+              <% else %>
+                ¡Regístrate o Conéctate!
+              <% end %>
+            </a>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <li><%= button_to 'Cerrar sesión', destroy_user_session_path, class: 'dropdown-item', method: :delete %></li>
+              <% else %>
+                <li><%= link_to 'Iniciar sesión', new_user_session_path, class: 'dropdown-item' %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= link_to 'Registro', new_user_registration_path, class: 'dropdown-item' %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </nav>
