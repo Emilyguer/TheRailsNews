@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
  #vistas estaticas
   
  get 'home', to: 'pages#home', as: 'home'
