@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
-
+  before_action :authorize_admin!, only: [:edit, :update, :destroy, :new]
 
   # GET /news or /news.json
   def index
@@ -70,7 +70,12 @@ class NewsController < ApplicationController
     end
 
 
-
+    def authorize_admin!
+      unless admin_user?
+        flash[:error] = "No tienes permiso para realizar esta acción."
+        redirect_to root_path
+      end
+    end
 
     # Only allow a list of trusted parameters through.
     def news_params
