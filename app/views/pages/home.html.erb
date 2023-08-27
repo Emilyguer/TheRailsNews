@@ -1,2 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Últimas Noticias</h1>
+
+
+<% @latest_news.each do |news| %>
+  <h2><%= link_to news.title, news %></h2>
+  <p><%= news.content %></p>
+  <hr>
+<% end %>

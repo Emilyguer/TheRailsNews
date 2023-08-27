@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+
+<h1>Comentarios</h1>
+
+<% if @comments.any? %>
+  <div>
+    <% @comments.each do |comment| %>
+      <p>
+        <strong>User:</strong>
+        <% if comment.user.present? %>
+          <%= comment.user.email %>
+        <% else %>
+          User not available
+        <% end %>
+      </p>
+      <p>
+        <strong>Content:</strong>
+        <%= comment.content %>
+      </p>
+    <% end %>
+  </div>
+<% else %>
+  <p>No hay comentarios disponibles.</p>
+<% end %>
+
+<div>
+  <%= link_to "Edit this comment", edit_comment_path(@comment) %> |
+  <%= link_to "Back to comments", comments_path %>
+
+  <%= button_to "Destroy this comment", @comment, method: :delete %>
+</div>

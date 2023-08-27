@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <%= form_with(model: news, class: "needs-validation") do |form| %>
+    <% if news.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(news.errors.count, "error") %> prohibieron guardar esta noticia:</h4>
+
+        <ul>
+          <% news.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :author, class: "form-label" %>
+      <%= form.text_field :author, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :content, class: "form-label" %>
+      <%= form.text_area :content, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :publication_date, class: "form-label" %>
+      <%= form.date_field :publication_date, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Guardar Noticia", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

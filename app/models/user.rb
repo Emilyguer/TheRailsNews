@@ -10,7 +10,10 @@ class User < ApplicationRecord
   # Enum de roles
   enum role: {
     normal: 'normal',
-    admin: 'administrador'
+    administrador: 'administrador'
   }, _default: 'normal'
+
+#Relaciones 
+has_many :comments
 
 end
