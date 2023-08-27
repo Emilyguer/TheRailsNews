@@ -1,6 +1,11 @@
   Rails.application.routes.draw do
-    resources :comments
-    resources :news
+    
+    resources :news  do
+      resources :comments, only: [:create]
+    end
+    
+    #devise
+
     devise_for :users
 
 

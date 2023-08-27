@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+
   def home
+    @latest_news = News.order(publication_date: :desc).limit(5)
   end
 
   def term

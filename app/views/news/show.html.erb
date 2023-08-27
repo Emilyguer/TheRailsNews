@@ -1,10 +1,28 @@
 <p style="color: green"><%= notice %></p>
-
 <%= render @news %>
 
-<div>
-  <%= link_to "Edit this news", edit_news_path(@news) %> |
-  <%= link_to "Back to news", news_index_path %>
 
-  <%= button_to "Destroy this news", @news, method: :delete %>
-</div>
+<% if user_signed_in? %>
+  <%= render 'comments/form', news: @news, comment: @comment %>
+<% else %>
+ <p>Debes <%= link_to "registrarte", new_user_registration_path %> o <%= link_to "iniciar sesión", new_user_session_path %> para comentar.</p>
+<% end %>
+
+<% @comments.each do |comment| %>
+  <p>
+    <strong>User:</strong>
+    <% if comment.user.present? %>
+      <%= comment.user.email %>
+    <% else %>
+      User not available
+    <% end %>
+  </p>
+  <p>
+    <strong>Content:</strong>
+    <%= comment.content %>
+     <%= puts comment.content.inspect %>
+  </p>
+<% end %>
+
+
+

@@ -1,32 +1,11 @@
-<%= form_with(model: comment) do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+<%= form_with(model: [@news, Comment.new], url: news_comments_path(@news)) do |form| %>
+  <%= form.text_area :content, placeholder: "Escribe tu comentario...", class: "form-control" %>
+  <%= form.submit "Comentar", class: "btn btn-primary" %>
+  <% if @comment.errors.any? %>
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
-
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :news_id, style: "display: block" %>
-    <%= form.text_field :news_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

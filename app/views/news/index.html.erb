@@ -6,9 +6,11 @@
   <% @news.each do |news| %>
     <%= render news %>
     <p>
-      <%= link_to "Show this news", news %>
+      <%= link_to "Show this news", news_path(news) %>
     </p>
   <% end %>
 </div>
+
+
 
 <%= link_to "New news", new_news_path %>

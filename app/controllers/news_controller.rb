@@ -1,6 +1,7 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
 
+
   # GET /news or /news.json
   def index
     @news = News.all
@@ -8,6 +9,11 @@ class NewsController < ApplicationController
 
   # GET /news/1 or /news/1.json
   def show
+    @comment = Comment.new
+    @comments = @news.comments.includes(:user)
+    if user_signed_in?
+      @user_comment = @news.comments.build(user_id: current_user.id)
+    end
   end
 
   # GET /news/new
@@ -62,6 +68,9 @@ class NewsController < ApplicationController
     def set_news
       @news = News.find(params[:id])
     end
+
+
+
 
     # Only allow a list of trusted parameters through.
     def news_params
