@@ -1,22 +1,23 @@
-<div id="<%= dom_id news %>">
-  <p>
-    <strong>Title:</strong>
-    <%= news.title %>
-  </p>
+<div class="container mt-5">
+  <div id="<%= dom_id news %>" class="border p-4">
+    <p class="mb-0">
+      <strong>Título:</strong>
+      <%= news.title %>
+    </p>
 
-  <p>
-    <strong>Author:</strong>
-    <%= news.author %>
-  </p>
+    <p class="mb-0">
+      <strong>Autor:</strong>
+      <%= news.author %>
+    </p>
 
-  <p>
-    <strong>Content:</strong>
-    <%= news.content %>
-  </p>
+    <p class="mb-0">
+      <strong>Contenido:</strong>
+      <%= news.content %>
+    </p>
 
-  <p>
-    <strong>Publication date:</strong>
-    <%= news.publication_date %>
-  </p>
-
+    <p class="mb-0">
+      <strong>Fecha de publicación:</strong>
+      <%= news.publication_date %>
+    </p>
+  </div>
 </div>

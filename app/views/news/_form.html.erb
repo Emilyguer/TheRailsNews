@@ -1,37 +1,39 @@
-<%= form_with(model: news) do |form| %>
-  <% if news.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(news.errors.count, "error") %> prohibited this news from being saved:</h2>
+<div class="container mt-5">
+  <%= form_with(model: news, class: "needs-validation") do |form| %>
+    <% if news.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(news.errors.count, "error") %> prohibieron guardar esta noticia:</h4>
 
-      <ul>
-        <% news.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% news.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :author, class: "form-label" %>
+      <%= form.text_field :author, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :content, class: "form-label" %>
+      <%= form.text_area :content, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :publication_date, class: "form-label" %>
+      <%= form.date_field :publication_date, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Guardar Noticia", class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :author, style: "display: block" %>
-    <%= form.text_field :author %>
-  </div>
-
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.label :publication_date, style: "display: block" %>
-    <%= form.date_field :publication_date %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
